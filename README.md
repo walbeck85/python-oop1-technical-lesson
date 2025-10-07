@@ -1,193 +1,217 @@
-# OOP Part 1 Technical Lesson
+# Dog Model OOP Technical Lesson
 
-In this lesson, we will explore how to build a class within Python through the lens of Object Oriented Programming. 
+This project guides you through building a Dog class in Python, demonstrating core Object Oriented Programming (OOP) concepts such as instance attributes, methods, and properties. The Dog model simulates a veterinary clinic’s database tool to manage client information.
 
-## The Scenario 
+## Overview
 
-Imagine you are working for a veterinarian clinic. They would like for you to build a dog model in order to start creating an online database and tool for the clinic to use to better keep track of their clients. As a part of this you will be tasked with:
+In this lesson, you will create a Dog class that models the essential attributes and behaviors of a dog in a veterinary setting. You will learn how to:
 
-* Creating a model for Dogs
-* Creating initial values of dog instance
-* Applying properties to dog attributes
-* Creating a method to checkup on the dog.
+- Define a class and initialize instance properties
+- Implement instance methods to modify object state
+- Use Python properties to add validation logic to attributes
+- Create and interact with class instances
 
-## Resources & Tools
+This exercise provides a practical introduction to OOP fundamentals in Python.
 
-* [GitHub Repo](https://github.com/learn-co-curriculum/python-oop1-technical-lesson)
+## Learning Objectives
 
-## Instructions
+By the end of this lesson, you will be able to:
 
-### Set Up
+- Define a Python class with appropriate attributes and methods
+- Initialize class instances with default and required parameters
+- Create instance methods that modify object state
+- Implement getter and setter methods using Python properties
+- Validate attribute values within setters to enforce data integrity
+- Understand the use of `self` and instance-specific data
+- Work with feature branches and Git workflow for collaborative development
 
-Before we begin coding, let's complete the initial setup for this lesson: 
+## Technologies Used
 
-* Part 1: Fork and Clone
-  * For this lesson, you will need the previously linked Github Repo
-    * Go to the provided GitHub repository link.
-    * Fork the repository to your GitHub account.
-    * Clone the forked repository to your local machine.
-* Part 2: Open and Run File
-  * Open the project in VSCode.
-  * Run npm install to install all necessary dependencies.
+- Python 3.x
+- pipenv for dependency management and virtual environment
 
-### Task 1: Define the Problem
+## Project Setup
 
-They would like for you to build a dog model in order to start creating an online database and tool for the clinic to use to better keep track of their clients. You will be tasked with:
+Follow these steps to set up your environment:
 
-* Creating a model for Dogs
-* Creating initial values of dog instance
-* Applying properties to dog attributes
-* Creating a method to checkup on the dog.
+1. **Fork and Clone the Repository**
 
-### Task 2: Determine the Design
+   - Navigate to the [GitHub Repo](https://github.com/learn-co-curriculum/python-oop1-technical-lesson).
+   - Fork the repository to your GitHub account.
+   - Clone your fork locally:
+     ```bash
+     git clone <your-forked-repo-url>
+     cd python-oop1-technical-lesson
+     ```
 
-Determine Dog Attributes:
-* Breed
-* Name
-* Last checkup
-* Age
+2. **Install Dependencies**
 
-Determine Necessary Methods:
-* checkup
-* birthday_celebration
+   - Run the following commands to install dependencies and activate the virtual environment:
+     ```bash
+     pipenv install
+     pipenv shell
+     ```
 
-### Task 3: Develop, Test, and Refine the Code
+3. **Open the Project**
 
-#### Step 1: Create a Feature Branch
+   - Open the project folder in your preferred code editor (e.g., VSCode).
 
-Create a Feature Branch git checkout -b dog_class
+## Usage Instructions
 
-#### Step 2: Build the Class
+To run the Dog class demonstration:
 
-To start off now that we have determined what our object is and what it would look like in Task 2 we need to build our Dog class using the python class feature. All code changes will happen in lib/dog.py
-```python
-class Dog:
-pass
-```
-When initiating a class in python we need to start with the phrase class and name the class followed by a semicolon (similarly to python functions).
-<br />
-Best practice tends to be to capitalize the first letter of the class name.
-
-#### Step 3: Initialize Instance Properties
-
-Next steps to creating a class would be to set up the init. This will be the starting attributes for a class instance upon initially creating it. To do this we must refer to the self variable, as the name suggests this self represents each specific instance of the Dog class.
-```python
-class Dog:
-def __init__(self, name, breed, age, last_checkup = None):
-	self.name = name
-	self.breed = breed
-	self.age = age
-	self.last_checkup = last_checkup
-```
-We set up our init and pass into it 5 variables, self is always passed into methods within class, and name, breed, age, and last_checkup are passed in when the instance is created. In this case we can default certain variables within the init by setting an equal sign. So if the user puts nothing in for last_checkup then it will default to None. 
-
-#### Step 4: Create Instance Methods
-
-The next step would be to create any methods you need for these classes. These methods are effectively functions tied directly to any instance of the Dog class.
-```python
-class Dog:
-def __init__(self, name, breed, age, last_checkup = None):
-		self.name = name
-		self.breed = breed
-		self.age = age
-		self.last_checkup = last_checkup
-	
-	def checkup(self,date):
-		print(f"Checking up with {self.name} on {date}")
-		self.last_checkup = date
-	
-	def birthday_celebration(self):
-		self.age += 1
-		print(f"{self.name} is turning {self.age}")
-```
-We created two methods, birthday_celebration and check_up. 
-<br />
-For the birthday celebration we pass in no other variable (besides the self which is required for all class methods). This method will change the age of this specific instance and then it will print out the name and age of this dog using an f string to read the variable
-<br />
-For checkup we have the variable date passed in. We print out a message to the user and update the last_checkup to the date that was passed in.
-
-#### Step 5: Create and Use Instances of the Class
-
-Now is the time to test our instance creation and methods. This will show the use of instances as we create examples.
-```python
-class Dog:
-def __init__(self, name, breed, age, last_checkup = None):
-		self.name = name
-		self.breed = breed
-		self.age = age
-		self.last_checkup = last_checkup
-	
-	def checkup(self,date):
-		print(f"Checking up with {self.name} on {date}")
-		self.last_checkup = date
-	
-	def birthday_celebration(self):
-		self.age += 1
-		print(f"{self.name} is turning {self.age}")
-
-fido = Dog("Fido","Golden Retriever", 3, "05/22/2022")
-clifford = Dog(
-name = "Clifford",
-age = 2, 
-breed = "Big Red")
-
-print(fido.age)
-fido.birthday_celebration()
-print(fido.age)
-print(clifford.last_checkup)
-clifford.checkup("03/02/2024")
-print(clifford.last_checkup)
-```
-
-We create two instances of Dogs.
-
-* One instance passes in the variables without specifications. This is fido, if nothing is specified we see that it will take the order of what is passed into __init__, ignoring self as self is implicit. This means the first variable passed into Dog would represent the name, followed by the breed, age, and last_checkup in that order.
-* In the second instance, clifford, we specify that name equals, breed equals, and age equals a specific variable. This means we don’t need to worry about order if we do this.
-
-Next we test our two methods by calling them and by adding prints before and after to confirm that the properties being changed are actually updating. We expect the terminal to print the following.
 ```bash
+python lib/dog.py
+```
+
+This will execute the script that creates Dog instances, invokes methods, and demonstrates property validation.
+
+## Expected Output
+
+When running the script, you should see the following output in your terminal:
+
+```
 3
 Fido is turning 4
 4
 None
-Checking up with Clifford on 03/022024
-03/022024
+Checking up with Clifford on 03/02/2024
+03/02/2024
+Not valid age
+Not valid age
 ```
 
-#### Step 6: Modify and Access Instance Properties
+## Code Structure
 
-When adding properties to instance variables the question arises what variables need to have a check to them. Adding properties is a great way to apply any limiters such as needs to be a string or int or if the int needs to be between specific values. These checkers will go in the setter function. A property uses a getter and setter functions that will trigger under specific scenarios. The getter will trigger whenever self.[variable] is called, the setter is triggered whenever self.[variable] = value is called.
+The `Dog` class includes:
+
+- **Attributes:**
+  - `name` (string): Dog’s name
+  - `breed` (string): Dog’s breed
+  - `age` (int): Dog’s age, validated to be a non-negative integer
+  - `last_checkup` (string or None): Date of last checkup
+
+- **Methods:**
+  - `checkup(date)`: Updates the `last_checkup` date and prints a message
+  - `birthday_celebration()`: Increments the dog’s age by 1 and prints a celebratory message
+
+- **Property:**
+  - `age`: Uses getter and setter to enforce that age is an integer ≥ 0. Invalid assignments print an error message.
+
+## Git Workflow
+
+Follow this workflow for development:
+
+1. Create a feature branch:
+   ```bash
+   git checkout -b dog_class
+   ```
+
+2. Make your changes and commit with a descriptive message:
+   ```bash
+   git commit -am "Finish Dog model"
+   ```
+
+3. Push the branch to GitHub:
+   ```bash
+   git push origin dog_class
+   ```
+
+4. Open a Pull Request (PR) on GitHub, review, and merge into the main branch.
+
+5. Pull the latest main branch and delete the feature branch locally:
+   ```bash
+   git checkout main
+   git pull origin main
+   git branch -d dog_class
+   ```
+
+   If deletion fails because Git doesn’t recognize the branch as merged, force delete with:
+   ```bash
+   git branch -D dog_class
+   ```
+
+## Reflection / Best Practices
+
+- **Code Comments:** Add comments to clarify code intent and improve maintainability.
+- **Understanding Instances and `self`:** Each instance has its own `self` context; this is fundamental to OOP.
+- **Property Underscores:** Use an underscore prefix (e.g., `_age`) in getter/setter to avoid recursive calls.
+- **Validation:** Use property setters to enforce data integrity and prevent invalid attribute values.
+
+---
+
+# Detailed Code Walkthrough
+
+## Step 1: Create a Feature Branch
+
+Create a new branch for your work:
+
+```bash
+git checkout -b dog_class
+```
+
+## Step 2: Build the Class
+
+Define a basic Dog class:
 
 ```python
 class Dog:
-def __init__(self, name, breed, age, last_checkup = None):
-		self.name = name
-		self.breed = breed
-		self.age = age
-		self.last_checkup = last_checkup
-	
-	def checkup(self,date):
-		print(f"Checking up with {self.name} on {date}")
-		self.last_checkup = date
-	
-	def birthday_celebration(self):
-		self.age += 1
-		print(f"{self.name} is turning {self.age}")
-	def get_age(self):
-		return self._age
-	def set_age(self,value):
-		if type(value) is int and 0 <= value:
-			self._age = value
-		else:
-			print("Not valid age")
-	age = property(get_age,set_age)
-	
+    pass
+```
 
-fido = Dog("Fido","Golden Retriever", 3, "05/22/2022")
+Classes in Python start with the `class` keyword, followed by the class name capitalized and a colon.
+
+## Step 3: Initialize Instance Properties
+
+Add the `__init__` method to initialize attributes when creating an instance:
+
+```python
+class Dog:
+    def __init__(self, name, breed, age, last_checkup=None):
+        self.name = name
+        self.breed = breed
+        self.age = age
+        self.last_checkup = last_checkup
+```
+
+- `self` refers to the instance being created.
+- `last_checkup` defaults to `None` if no value is provided.
+
+## Step 4: Create Instance Methods
+
+Add methods to perform actions on instances:
+
+```python
+class Dog:
+    def __init__(self, name, breed, age, last_checkup=None):
+        self.name = name
+        self.breed = breed
+        self.age = age
+        self.last_checkup = last_checkup
+    
+    def checkup(self, date):
+        print(f"Checking up with {self.name} on {date}")
+        self.last_checkup = date
+    
+    def birthday_celebration(self):
+        self.age += 1
+        print(f"{self.name} is turning {self.age}")
+```
+
+- `checkup` updates `last_checkup` and prints a message.
+- `birthday_celebration` increments age and prints a celebratory message.
+
+## Step 5: Create and Use Instances of the Class
+
+Instantiate Dog objects and interact with them:
+
+```python
+fido = Dog("Fido", "Golden Retriever", 3, "05/22/2022")
 clifford = Dog(
-name = "Clifford",
-age = 2, 
-breed = "Big Red")
+    name="Clifford",
+    age=2, 
+    breed="Big Red"
+)
 
 print(fido.age)
 fido.birthday_celebration()
@@ -197,44 +221,55 @@ clifford.checkup("03/02/2024")
 print(clifford.last_checkup)
 ```
 
-We create a setter and getter for the age variable. We want the age to be an integer that is greater than 0 so we add that to the setter function in the form of an if else statement. After we create the two functions we apply the property by calling the property method and passing in our getter and setter methods (in that order).
-<br />
-An important note is that we add an underscore whenever we call self.age in the getter and setter. This will prevent a recursive loop from happening.
+- `fido` uses positional arguments.
+- `clifford` uses keyword arguments for clarity and flexibility.
 
-#### Step 7: Test Instance Properties
+## Step 6: Modify and Access Instance Properties with Validation
 
-The final step is to test if our instance properties work.
+Add getter and setter for `age` to validate input:
 
 ```python
 class Dog:
-def __init__(self, name, breed, age, last_checkup = None):
-		self.name = name
-		self.breed = breed
-		self.age = age
-		self.last_checkup = last_checkup
-	
-	def checkup(self,date):
-		print(f"Checking up with {self.name} on {date}")
-		self.last_checkup = date
-	
-	def birthday_celebration(self):
-		self.age += 1
-		print(f"{self.name} is turning {self.age}")
-	def get_age(self):
-		return self._age
-	def set_age(self,value):
-		if type(value) is int and 0 <= value:
-			self._age = value
-		else:
-			print("Not valid age")
-	age = property(get_age,set_age)
-	
+    def __init__(self, name, breed, age, last_checkup=None):
+        self.name = name
+        self.breed = breed
+        self.age = age
+        self.last_checkup = last_checkup
+    
+    def checkup(self, date):
+        print(f"Checking up with {self.name} on {date}")
+        self.last_checkup = date
+    
+    def birthday_celebration(self):
+        self.age += 1
+        print(f"{self.name} is turning {self.age}")
+    
+    def get_age(self):
+        return self._age
+    
+    def set_age(self, value):
+        if type(value) is int and 0 <= value:
+            self._age = value
+        else:
+            print("Not valid age")
+    
+    age = property(get_age, set_age)
+```
 
-fido = Dog("Fido","Golden Retriever", 3, "05/22/2022")
+- The setter checks that `age` is a non-negative integer.
+- The underscore prefix `_age` prevents recursive setter/getter calls.
+
+## Step 7: Test Instance Properties
+
+Test the validation by creating instances with invalid ages:
+
+```python
+fido = Dog("Fido", "Golden Retriever", 3, "05/22/2022")
 clifford = Dog(
-name = "Clifford",
-age = 2, 
-breed = "Big Red")
+    name="Clifford",
+    age=2, 
+    breed="Big Red"
+)
 
 print(fido.age)
 fido.birthday_celebration()
@@ -247,59 +282,19 @@ balto = Dog("Balto", "Husky", "Not an age")
 steele = Dog("Steele", "Husky", -10)
 ```
 
-To test the property we will test the two cases that should not work, a string and a negative number. We should see “Not Valid Age” appear twice as both balto and steele have invalid ages.
-<br />
-Verify the model work
-<br />
-Commit changes.
-<br />
-```bash
-git commit -am "Finish Dog model"
+You should see the following output including error messages for invalid ages:
+
+```
+3
+Fido is turning 4
+4
+None
+Checking up with Clifford on 03/02/2024
+03/02/2024
+Not valid age
+Not valid age
 ```
 
-#### Step 8: Push changes to GitHub and Merge Branches
+---
 
-Push the branch to GitHub:
-
-```bash
-git push origin dog_class
-```
-
-* Create a Pull Request (PR) on GitHub.
-* Merge the PR into main after review.
-* Pull the new merged main branch locally and delete merged feature branch (optional):
-
-```bash
-git checkout main
-git pull origin main
-
-git branch -d dog_class
-```
-
-If the last command doesn’t delete the branch, it’s likely git is not recognizing the branch as having been merged. Verify you do have the merged code in your main branch, then you can run the same command but with a capital D to ignore the warning and delete the branch anyway.
-
-```bash
-git branch -D dog_class
-```
-
-### Task 4: Document and Maintain
-
-Best practice for documentation steps. Add comments to code to explain purpose and logic
-
-* Clarify intent / functionality of code to other developers
-* Add screenshot of completed work included in Markdown in README.
-* Update README text to reflect the functionality of the application following https://makeareadme.com.
-* Delete any stale branches on GitHub
-* Remove unnecessary/commented out code
-* If needed, update git ignore to remove sensitive data
-
-## Considerations
-
-* Tabbing or Spacing
-  * Ensure that you are careful with tabbing/spacing as it is important to distinguish which part of your code is a part of the class and methods.
-* Instances and Self
-  * A core to OOP is understanding instances. Our different instances of Dog will have a different “self” so understanding that will give a better understanding of our structure. It is important to remember the necessity of self in the different class methods.
-* Property Underscores
-  * Make sure to add the necessary underscore for every setter and getter function you create. self._[variable] is necessary specifically to avoid any recursive issues due to when the setter and getter are triggered.
- 
- 
+This concludes the technical lesson on creating a Dog class using Python OOP principles. Make sure to commit your changes and push to your GitHub repository following the Git workflow outlined above.
